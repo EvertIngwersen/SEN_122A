@@ -38,3 +38,35 @@ print(f'After editing the third element (index == 2): {this_is_a_list}')
 # Removing the first element of the list
 this_is_a_list.pop(0)
 print(f'After deleting the first element: {this_is_a_list}')
+
+# Tuples
+
+# Defining a tuple
+this_is_an_empty_tuple = tuple()
+this_is_a_tuple = (3, True, 'Hello')
+print(f'This is a tuple: {this_is_a_tuple}')
+
+# Accessing to elements
+result2 = this_is_a_tuple[1]
+print(f'The value in index 1 of tuple is: {result2}')
+
+# Uncomment the following line to see the error. What is happening?
+#this_is_a_tuple[1] = 5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
