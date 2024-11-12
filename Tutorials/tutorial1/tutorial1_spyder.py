@@ -47,9 +47,65 @@ print(f'   asc1: {asc1}')
 print(f'   asc2: {asc2}')
 print(f'   --> True Value of Travel Time: {60*β_tt/β_tc:0.1f} €/hr.')
 
+# Compute the utilities given the DGP: V = ASC + b1*TC1 + b2*TT1 + b3*TC2 + b4*TT2
+df['V1'] = asc1 + β_tc * df['TC1'] + β_tt * df['TT1'] 
+df['V2'] = asc2 + β_tc * df['TC2'] + β_tt * df['TT2']
 
+# Add the error terms
+# Fix the seed to make the results replicable
+np.random.seed(42)
+df['epsilon1'] = np.random.gumbel(size=len(df))
+df['epsilon2'] = np.random.gumbel(size=len(df))
 
+# Compute the total utility
+df['U1'] = df['V1'] + df['epsilon1']
+df['U2'] = df['V2'] + df['epsilon2']
 
+# Identify the chosen alternative based on the maximum utility
+df['CHOICE'] = np.nan
+df.loc[df['U1'] > df['U2'], 'CHOICE'] = 1
+df.loc[df['U2'] > df['U1'], 'CHOICE'] = 2
+
+# Convert the chosen alternative to an integer (optional)
+df['CHOICE'] = df['CHOICE'].astype(int)
+
+# Save the data in a csv file
+data_path =  Path(f'data/synthetic_VTTdata_tutorial1.dat')
+df[['RESP','TC1', 'TT1', 'TC2', 'TT2','CHOICE']].to_csv(data_path, sep=',', index=False)
+
+# Show the first rows
+df.head()
+# df.value_counts('CHOICE')
+
+# Compute the utilities given the DGP: V = ASC + b1*TC1 + b2*TT1 + b3*TC2 + b4*TT2
+df['V1'] = asc1 + β_tc * df['TC1'] + β_tt * df['TT1'] 
+df['V2'] = asc2 + β_tc * df['TC2'] + β_tt * df['TT2']
+
+# Add the error terms
+# Fix the seed to make the results replicable
+np.random.seed(42)
+df['epsilon1'] = np.random.gumbel(size=len(df))
+df['epsilon2'] = np.random.gumbel(size=len(df))
+
+# Compute the total utility
+df['U1'] = df['V1'] + df['epsilon1']
+df['U2'] = df['V2'] + df['epsilon2']
+
+# Identify the chosen alternative based on the maximum utility
+df['CHOICE'] = np.nan
+df.loc[df['U1'] > df['U2'], 'CHOICE'] = 1
+df.loc[df['U2'] > df['U1'], 'CHOICE'] = 2
+
+# Convert the chosen alternative to an integer (optional)
+df['CHOICE'] = df['CHOICE'].astype(int)
+
+# Save the data in a csv file
+data_path =  Path(f'data/synthetic_VTTdata_tutorial1.dat')
+df[['RESP','TC1', 'TT1', 'TC2', 'TT2','CHOICE']].to_csv(data_path, sep=',', index=False)
+
+# Show the first rows
+df.head()
+# df.value_counts('CHOICE')
 
 
 
