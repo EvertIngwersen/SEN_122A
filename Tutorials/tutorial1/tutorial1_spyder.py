@@ -107,5 +107,5 @@ df[['RESP','TC1', 'TT1', 'TC2', 'TT2','CHOICE']].to_csv(data_path, sep=',', inde
 df.head()
 # df.value_counts('CHOICE')
 
- k
-
+# Save the dataframe for use in next turorials
+df.to_pickle('data/synthetic_data_tutorial1.pkl')
