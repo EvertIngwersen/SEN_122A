@@ -72,7 +72,18 @@ print(f"The new bird dictionary after adding one element is: {birds}")
 del birds['pn']
 print(f"The new bird dictionary after deleting one element is: {birds}")
 
-"hallo ties"
+#Excersise 2
+
+dictionary = {'element_1': [2,3,4,5,6],
+              'element_2': [2,4,8,16,32]}
+
+dictionary.update({'element_3': [3,9,27,144,356]})
+
+del dictionary['element_1']
+
+#excersise 3
+
+
 
 
 
