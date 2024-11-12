@@ -53,7 +53,24 @@ print(f'The value in index 1 of tuple is: {result2}')
 # Uncomment the following line to see the error. What is happening?
 #this_is_a_tuple[1] = 5
 
+# Dictionaries
 
+# Defining a dictionary
+this_is_an_empty_dict = {}
+birds = {'pn': 'Penguins', 'eg': 'Eagle', 'sg': 'seagull'}
+print(f"The original bird dictionary is: {birds}")
+
+# Accessing to dict element
+result3 = birds['eg']
+print(f"The bird with key 'eg' in dict is: {result3}")
+
+# Adding elements
+birds.update({'dc': 'duck'})
+print(f"The new bird dictionary after adding one element is: {birds}")
+
+# Deleting elements
+del birds['pn']
+print(f"The new bird dictionary after deleting one element is: {birds}")
 
 
 
