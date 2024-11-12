@@ -83,10 +83,18 @@ del dictionary['element_1']
 
 #excersise 3
 
+number_list = [3,6,1,7,2,8]
 
 
-
-
+def sum_list(number_list):
+    sum = 0
+    for i in range(number_list):
+        sum += i
+    return sum
+        
+def get_mean(number_list):
+    mean = sum_list(number_list) / len(number_list)
+    return mean
 
 
 
