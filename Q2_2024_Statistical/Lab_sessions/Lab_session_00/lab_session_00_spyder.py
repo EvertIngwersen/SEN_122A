@@ -5,6 +5,10 @@ Created on Tue Nov 12 12:24:44 2024
 @author: evert
 """
 
+import pandas as pd
+from pathlib import Path
+
+
 dividend = 7
 divisor = 3
 
@@ -97,8 +101,19 @@ def get_mean(number_list):
     return mean
 
 
+# NOTE: We will use pathlib just to control file paths between UNIX and Windows
 
 
+# Folder which contains the data
+data_folder = Path('data')
+
+# Reading an external dataset in csv
+df = pd.read_csv(data_folder/'train.csv')
+
+# Showing a sample of the first 10 rows of the database
+df.head(10)
+# Showing a Serie with all dtypes conteined in the DataFrame
+df.dtypes
 
 
 
