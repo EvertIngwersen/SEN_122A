@@ -72,6 +72,8 @@ print(f"The new bird dictionary after adding one element is: {birds}")
 del birds['pn']
 print(f"The new bird dictionary after deleting one element is: {birds}")
 
+"hallo ties"
+
 
 
 
