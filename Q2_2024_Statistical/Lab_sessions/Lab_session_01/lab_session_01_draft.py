@@ -19,3 +19,7 @@ from pathlib import Path
 
 # Pandas setting to show all columns when displaying a pandas dataframe
 pd.set_option('display.max_columns', None)
+
+# Create that path to the data file
+data_path =  Path(f'data/choice_data_cleaned.dat')
+df = pd.read_csv(data_path, sep='\t')
