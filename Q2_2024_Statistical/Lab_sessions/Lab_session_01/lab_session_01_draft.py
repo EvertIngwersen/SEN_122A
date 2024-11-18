@@ -78,8 +78,45 @@ age_column = df['AGE']
 plt.hist(age_column, bins='auto')
 plt.title("Age distribution")
 
+#2
+biodata = db.Database('Neighboorhood_choice_data', df)
 
+# We create Variable objects for each of the variables in the data set that we want to use in the model
 
+# Attributes of alternative 1
+STORES1     = Variable('STORES1')
+TRANSPORT1  = Variable('TRANSPORT1')
+CITY1       = Variable('CITY1')
+NOISE1      = Variable('NOISE1')
+GREEN1      = Variable('GREEN1')
+FOREIGN1    = Variable('FOREIGN1')
+
+# Attributes of alternative 2    
+STORES2     = Variable('STORES2')
+TRANSPORT2  = Variable('TRANSPORT2')
+CITY2       = Variable('CITY2')
+NOISE2      = Variable('NOISE2')
+GREEN2      = Variable('GREEN2')
+FOREIGN2    = Variable('FOREIGN2')
+    
+# Attributes of alternative 3
+STORES3     = Variable('STORES3')
+TRANSPORT3  = Variable('TRANSPORT3')
+CITY3       = Variable('CITY3')
+NOISE3      = Variable('NOISE3')
+GREEN3      = Variable('GREEN3')
+FOREIGN3    = Variable('FOREIGN3')
+
+# The choice
+CHOICE      = Variable('CHOICE')
+
+# Socio-economic variables
+AGE         = Variable('AGE')
+WOMAN       = Variable('WOMAN')
+HOMEOWNER   = Variable('HOMEOWNER')
+CAROWNER    = Variable('CAROWNER')
+RESPCITY    = Variable('RESPCITY')
+JOB         = Variable('JOB')
 
 
 
