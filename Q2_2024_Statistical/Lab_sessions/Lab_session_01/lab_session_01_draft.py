@@ -64,16 +64,19 @@ Explore the sample statistics.<br>
 
 """
 
+socio_attributes = ['WOMAN', 'AGE', 'EDUYEARS', 
+                    'RESPFOREIGN', 'HOMEOWNER',
+                    'CAROWNER', 'JOB', 
+                    'WESTERN', 'NONWESTERN']
+
+test = df[socio_attributes].describe()
+
+socio_choice_freq = df[socio_attributes].value_counts()
 
 
-
-
-
-
-
-
-
-
+age_column = df['AGE']
+plt.hist(age_column, bins='auto')
+plt.title("Age distribution")
 
 
 
