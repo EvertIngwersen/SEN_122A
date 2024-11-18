@@ -45,6 +45,8 @@ print(f'After deleting the first element: {this_is_a_list}')
 
 # Tuples
 
+#test_commit
+
 # Defining a tuple
 this_is_an_empty_tuple = tuple()
 this_is_a_tuple = (3, True, 'Hello')
