@@ -119,6 +119,88 @@ RESPCITY    = Variable('RESPCITY')
 JOB         = Variable('JOB')
 
 
+# Give a name to the model    
+model_name = 'Linear-additive RUM-MNL'
+
+# Define the model parameters, using the function "Beta()", in which you must define:
+# the name of the parameter,
+# starting value, 
+# lower bound,
+# upper bound, 
+# 0 or 1, indicating if the parameter must be estimated. 0 means estimated, 1 means fixed to the starting value. 
+B_stores    = Beta('B_stores'   , 0, None, None, 0)
+B_transport = Beta('B_transport', 0, None, None, 0)
+B_city      = Beta('B_city'     , 0, None, None, 0)
+B_noise     = Beta('B_noise'    , 0, None, None, 0)
+B_green     = Beta('B_green'    , 0, None, None, 0)
+B_foreign   = Beta('B_foreign'  , 0, None, None, 0)
+
+# Define the utility functions
+V1 = B_stores * STORES1 + B_transport * TRANSPORT1 + B_city * CITY1 + B_noise * NOISE1 + B_green * GREEN1 + B_foreign * FOREIGN1
+V2 = B_stores * STORES2 + B_transport * TRANSPORT2 + B_city * CITY2 + B_noise * NOISE2 + B_green * GREEN2 + B_foreign * FOREIGN2
+V3 = B_stores * STORES3 + B_transport * TRANSPORT3 + B_city * CITY3 + B_noise * NOISE3 + B_green * GREEN3 + B_foreign * FOREIGN3
+
+# This function estimates the MNL model and returns the estimation results
+# input values: utilities for all three alternatives, the choices, the database, and the model name
+
+def estimate_mnl(V1,V2,V3,CHOICE,database,name):
+    
+    # Create a dictionary to list the utility functions with the numbering of alternatives
+    V = {1: V1, 2: V2, 3: V3}
+        
+    # Create a dictionary called av to describe the availability conditions of each alternative, where 1 indicates that the alternative is available, and 0 indicates that the alternative is not available.
+    # This shows that all alternatives were available to all respondents. 
+    av = {1: 1, 2: 1, 3: 1} 
+
+    # Define the choice model: The function models.logit() computes the MNL choice probabilities of the chosen alternative given the V. 
+    prob = models.logit(V, av, CHOICE)
+
+    # Define the log-likelihood   
+    LL = log(prob)
+   
+    # Create the Biogeme object containing the object database and the formula for the contribution to the log-likelihood of each row using the following syntax:
+    biogeme = bio.BIOGEME(database, LL)
+    
+    # The following syntax passes the name of the model:
+    biogeme.modelName = name
+
+    # Some object settings regaridng whether to save the results and outputs 
+    biogeme.generate_pickle = False
+    biogeme.generate_html = False
+    biogeme.save_iterations = False
+    
+
+    # Syntax to calculate the null log-likelihood. The null-log-likelihood is used to compute the rho-square 
+    biogeme.calculate_null_loglikelihood(av)
+
+    # This line starts the estimation and returns the results object.
+    results = biogeme.estimate()
+     
+    return results
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
