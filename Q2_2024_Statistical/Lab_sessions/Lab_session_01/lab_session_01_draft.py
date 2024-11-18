@@ -23,3 +23,8 @@ pd.set_option('display.max_columns', None)
 # Create that path to the data file
 data_path =  Path(f'data/choice_data_cleaned.dat')
 df = pd.read_csv(data_path, sep='\t')
+
+attributes =   ['STORES1', 'TRANSPORT1', 'CITY1', 'NOISE1', 'GREEN1', 'FOREIGN1', 
+                'STORES2', 'TRANSPORT2', 'CITY2', 'NOISE2', 'GREEN2', 'FOREIGN2',
+                'STORES3', 'TRANSPORT3', 'CITY3', 'NOISE3', 'GREEN3', 'FOREIGN3']
+round(df[attributes].describe(),2)
