@@ -28,3 +28,40 @@ attributes =   ['STORES1', 'TRANSPORT1', 'CITY1', 'NOISE1', 'GREEN1', 'FOREIGN1'
                 'STORES2', 'TRANSPORT2', 'CITY2', 'NOISE2', 'GREEN2', 'FOREIGN2',
                 'STORES3', 'TRANSPORT3', 'CITY3', 'NOISE3', 'GREEN3', 'FOREIGN3']
 round(df[attributes].describe(),2)
+
+# Counts the number of times each  alternative is chosen
+choice_freq = df['CHOICE'].value_counts()
+
+# Calculate the percentage of the chosen alternatives
+choice_percent = round(choice_freq / len(df['CHOICE']) * 100,2)
+
+# Table Summary
+choice_table = pd.DataFrame({'Choice': choice_freq.index, 'Frequency': choice_freq.values, 'Percentage':choice_percent.values} )
+
+# Show the table
+choice_table
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
