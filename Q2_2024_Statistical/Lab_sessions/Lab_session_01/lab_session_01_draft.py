@@ -41,8 +41,28 @@ choice_table = pd.DataFrame({'Choice': choice_freq.index, 'Frequency': choice_fr
 # Show the table
 choice_table
 
+"""
+When modelling choice behaviour, 
+it is also important to have a good understanding of whether the sample 
+(i.e. the collected data) is representative of the target population. 
+If you are working with a non-representative sample, 
+the results and conclusions can not be generalised to the population. 
+This is particularly important when the objective is to 
+determine e.g. Willingness-to-pay estimates.=
+
+To assess whether the sample is representative of our target population, 
+we compare the sample statistics of the socio-demographic variables with statistics of the population. 
+Usually, population statistics are made available by the National Bureaus of Statistics. 
+In the Netherlands, this institute is called CBS (Centraal Bureau voor de Statistiek).
+
+Explore the sample statistics.<br>
+
+`A` Identify the column with socio-demographic variables 
+`B` Use the describe() to describe the socio-demographic variables, and create histograms for the variables
+`C` Reflect on the representativeness of the sample, without comparing them to the population statistics<
 
 
+"""
 
 
 
