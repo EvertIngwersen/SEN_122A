@@ -16,6 +16,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt 
 from pathlib import Path
+import colorful as cf
 
 # Pandas setting to show all columns when displaying a pandas dataframe
 pd.set_option('display.max_columns', None)
@@ -190,7 +191,12 @@ def estimate_mnl(V1,V2,V3,CHOICE,database,name):
 #estimate the model
 results_MNL = estimate_mnl(V1,V2,V3,CHOICE,biodata,model_name)
 
-
+print(cf.red(results_MNL.short_summary()))
+beta_hat_MNL = results_MNL.get_estimated_parameters()
+statistics_MNL = results_MNL.get_general_statistics()
+print(cf.yellow(beta_hat_MNL))
+LL_MNL = results_MNL.data.logLike
+      
 
 
 
