@@ -135,6 +135,15 @@ B_noise     = Beta('B_noise'    , 0, None, None, 0)
 B_green     = Beta('B_green'    , 0, None, None, 0)
 B_foreign   = Beta('B_foreign'  , 0, None, None, 0)
 
+
+"""
+
+V_i = β_1 * x_1i + β_2 * x_2i + ... + β_M * x_Mi 
+
+"""
+
+
+
 # Define the utility functions
 V1 = B_stores * STORES1 + B_transport * TRANSPORT1 + B_city * CITY1 + B_noise * NOISE1 + B_green * GREEN1 + B_foreign * FOREIGN1
 V2 = B_stores * STORES2 + B_transport * TRANSPORT2 + B_city * CITY2 + B_noise * NOISE2 + B_green * GREEN2 + B_foreign * FOREIGN2
