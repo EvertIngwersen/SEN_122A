@@ -128,7 +128,7 @@ model_name = 'Linear-additive RUM-MNL'
 # lower bound,
 # upper bound, 
 # 0 or 1, indicating if the parameter must be estimated. 0 means estimated, 1 means fixed to the starting value. 
-B_stores    = Beta('B_stores'   , 0, None, None, 0)
+B_stores    = Beta('B_stores'   , 0, None, None, 0) 
 B_transport = Beta('B_transport', 0, None, None, 0)
 B_city      = Beta('B_city'     , 0, None, None, 0)
 B_noise     = Beta('B_noise'    , 0, None, None, 0)
@@ -187,7 +187,8 @@ def estimate_mnl(V1,V2,V3,CHOICE,database,name):
      
     return results
 
-
+#estimate the model
+results_MNL = estimate_mnl(V1,V2,V3,CHOICE,biodata,model_name)
 
 
 
