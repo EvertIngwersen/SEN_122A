@@ -13,8 +13,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 start_time = datetime.now()
-timeout = time.time() + 10
+timeout = time.time() + 60
 
+print('\n Initializing a text using\
+    the Explicit multi-line statement')
 
 print("AAPL stock")
 print('GOOG option - call')
@@ -29,14 +31,18 @@ while True:
         price = s.price
         change = s.change
         last_trade = s.last_trade
-        print()
+        print("-------------------")
         print(cf.yellow(s))
         if change < 0:     
             print(cf.red((f" PRICE: {price}$")))
             print(cf.red(" ΔP < 0"))
+            print(cf.red(f" CHANGE: {change}$"))
+            print(cf.red("UTILITY LEVEL = LOW"))
         else:
             print(cf.green((f" PRICE: {price}$")))
             print(cf.green(" ΔP > 0"))
+            print(cf.green(f" CHANGE: {change}$"))
+            print(cf.green("UTILITY LEVEL = HIGH"))
         print("LAST TRADE", last_trade)
     if time.time() > timeout:
         print(cf.blue("MARKETS CLOSED"))
