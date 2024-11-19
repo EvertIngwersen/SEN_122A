@@ -29,3 +29,13 @@ print(cf.green("Set of β's:"))
 print(cf.yellow(f"β_tt = {β_tt}"))
 print(cf.yellow(f"β_tc = {β_tc}"))
 
+# Compute the utilities given the set of betas 
+df['V1'] = β_tt * df['TT1'] + β_tc *df['TC2']
+df['V2'] = β_tt * df['TT2'] + β_tc *df['TC2']
+
+# Compute the MNL choice probabilities using the logit formula
+df['P1'] = np.exp(df['V1'])/(np.exp(df['V1']) + np.exp(df['V2']))
+df['P2'] = np.exp(df['V2'])/(np.exp(df['V1']) + np.exp(df['V2']))
+
+# Show the results
+df.head()
