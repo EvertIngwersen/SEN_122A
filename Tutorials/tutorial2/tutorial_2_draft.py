@@ -26,6 +26,7 @@ df.head(10)
 β_tc = -0.5
 
 print(cf.green("Set of β's:"))
+print()
 print(cf.yellow(f"β_tt = {β_tt}"))
 print(cf.yellow(f"β_tc = {β_tc}"))
 
@@ -39,3 +40,26 @@ df['P2'] = np.exp(df['V2'])/(np.exp(df['V1']) + np.exp(df['V2']))
 
 # Show the results
 df.head()
+
+df['P_chosen'] = (df['CHOICE']==1) * df['P1'] + (df['CHOICE']==2) * df['P2']
+
+likelihood = df['P_chosen'].prod()
+print()
+print(cf.red(f"The likelihood of the data given the RUM_MNL model, with β_tt = {β_tt} and β_tc = {β_tc} is {likelihood}"))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
