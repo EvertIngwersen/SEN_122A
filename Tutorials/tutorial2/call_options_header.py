@@ -15,7 +15,7 @@ from tabulate import tabulate
 
 switch = "average"
 start_time = datetime.now()
-timeout = time.time() + 200
+timeout = time.time() + 10
 
 print('\n Initializing a text using\
     the Explicit multi-line statement')
@@ -25,7 +25,6 @@ print('GOOG option - call')
 g = Call('GOOG', d=3, m=11, y=2023, strike=200)
 
 stock_list = ['AAPL', 'XOM', 'MA', 'NVO', 'SAP']
-
 ΔP_dict = {}
 keys = range(len(stock_list))
 
@@ -33,9 +32,6 @@ for i in keys:
     ΔP_dict[i] = stock_list[i]
 
 print(ΔP_dict)
-
-
-
 ΔP_matrix = np.zeros((5,1))
 
 for i in range(len(stock_list)):
@@ -47,6 +43,9 @@ change_list_MA = []
 change_list_NVO = []
 change_list_SAP = []
 
+headers = ["STOCK", "PRICE", "CHANGE"]
+price_list = np.zeros(len(stock_list))
+change_list = np.zeros(len(stock_list))
 
 
 while True:
@@ -56,6 +55,9 @@ while True:
         price = s.price
         change = s.change
         ΔP_matrix[i,0] = change
+        price_list[i] = price
+        change_list[i] = change
+        data = [[stock, price, change] for stock, price, change in zip(stock_list, price_list, change_list)]
         last_trade = s.last_trade
         print(cf.yellow(s))
         match switch:
@@ -80,7 +82,8 @@ while True:
                     change_list_SAP.append(change)
                     average = sum(change_list_SAP)/len(change_list_SAP)
                     print(cf.yellow(f"AVG ΔP = {average}"))
-            
+                    print(tabulate(data, headers=headers, tablefmt="grid"))
+
         if change < 0:     
             print(cf.red((f" PRICE: {price}$")))
             print(cf.red(" ΔP < 0"))
@@ -93,7 +96,6 @@ while True:
             print(cf.green(f" CHANGE: {change}$"))
             print(cf.green("UTILITY LEVEL = HIGH"))
         print("LAST TRADE", last_trade)
-        
     if time.time() > timeout:
         print(cf.blue("MARKETS CLOSED"))
         break
