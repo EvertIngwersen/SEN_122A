@@ -10,7 +10,7 @@ import colorful as cf
 from datetime import datetime 
 import time
 import numpy as np
-import matplotlib.pyplot as plt
+import termplotlib as tpl
 from tabulate import tabulate
 
 switch = "average"
