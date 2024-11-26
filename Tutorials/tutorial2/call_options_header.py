@@ -12,10 +12,13 @@ import time
 import numpy as np
 import termplotlib as tpl
 from tabulate import tabulate
+import plotext as plt
+
+
 
 switch = "average"
 start_time = datetime.now()
-timeout = time.time() + 10
+timeout = time.time() + 300
 
 print('\n Initializing a text using\
     the Explicit multi-line statement')
@@ -46,6 +49,11 @@ change_list_SAP = []
 headers = ["STOCK", "PRICE", "CHANGE"]
 price_list = np.zeros(len(stock_list))
 change_list = np.zeros(len(stock_list))
+
+y = plt.sin() # sinusoidal signal 
+plt.scatter(y)
+plt.title("Scatter Plot")
+plt.show()
 
 
 while True:
