@@ -37,3 +37,10 @@ age = data['AGE'].value_counts()
 print(age)
 
 
+
+
+
+
+
+
+
