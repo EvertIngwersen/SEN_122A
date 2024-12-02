@@ -33,5 +33,7 @@ pd.set_option('display.max_columns', 500)
 data  = pd.read_csv('data_partial_exam_long.csv', sep='\t' )
 data.head()
 
+age = data['AGE'].value_counts()
+print(age)
 
 
