@@ -142,7 +142,24 @@ match switch:
         V = [{1: V_L[q], 2: V_R[q]} for q in range(obs_per_ind)]
         av = {1:1, 2:1}
         
-
+        condProb = [models.loglogit(V[q], av, Variable(f'Chosen_{q}')) for q in range(obs_per_ind)] 
+        condprobIndiv = exp(bioMultSum(condProb))   # exp to convert from logP to P again
+        uncondProb = MonteCarlo(condprobIndiv)
+        LL = log(uncondProb)
+        num_draws = 10
+        biogeme = bio.BIOGEME(biodata_wide , LL, number_of_draws=num_draws)
+        biogeme.nullLogLike = len(biodata_wide.data)*np.log(1/2)*obs_per_ind
+        biogeme.generate_pickle = False
+        biogeme.generate_html = False
+        biogeme.save_iterations = False
+        biogeme.modelName = model_name  
+        results = biogeme.estimate()
+        print(results.print_general_statistics())
+        
+        beta_hat = results.get_estimated_parameters()
+        print(beta_hat)
+        VTT_WTP_ML_PANEL_normal = 60 * beta_hat.loc['vtt']['Value']
+        print(f'Value of travel time Panel ML model in WTP space:  €{VTT_WTP_ML_PANEL_normal:.2f} per hour')
 
         
         
