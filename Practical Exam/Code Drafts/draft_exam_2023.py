@@ -76,18 +76,80 @@ model_name = 'Linear-additive RUM-MNL'
 β_os = Beta('β_os', 0, None, None, 0)
 
 
+V1 = β_cost*COST1 + β_size*SIZE1 + β_storage*STORAGE1 + β_cam*CAM1 + β_os*OS1
+V2 = β_cost*COST2 + β_size*SIZE2 + β_storage*STORAGE2 + β_cam*CAM2 + β_os*OS2
+V3 = β_cost*COST3 + β_size*SIZE3 + β_storage*STORAGE3 + β_cam*CAM3 + β_os*OS3
+
+#create systematic utility dict
+
+V = {1: V1, 2: V2, 3: V3}
+av = {1:1, 2:1, 3:1}
+
+prob = models.logit(V, av, CHOICE)
+LL = log(prob)
+
+biogeme = bio.BIOGEME(biodata,LL)
+
+biogeme.modelName = model_name
+biogeme.generatePickle = False
+biogeme.generate_html = False
+biogeme.saveIterations = False
 
 
+#calculate nul log likelihood for rho square
+
+biogeme.calculateNullLoglikelihood(av)
+# This line starts the estimation and returns the results object.
+results_MNL = biogeme.estimate()
+# Print the estimation statistics
+print(results_MNL.short_summary())
+print(results_MNL.getEstimatedParameters())
 
 
+#new model with age choice
+
+β_cost = Beta('β_cost', 0, None, None, 0)
+β_size = Beta('β_size', 0, None, None, 0)
+β_storage = Beta('β_storage', 0, None, None, 0)
+β_cam = Beta('β_cam', 0, None, None, 0)
+β_os_young = Beta('β_os_young', 0, None, None, 0)
+β_os_middle = Beta('β_os_middle', 0, None, None, 0)
+β_os_old = Beta('β_os_old', 0, None, None, 0)
 
 
+#new utility:
+V1 = β_cost*COST1 + β_size*SIZE1 + β_storage*STORAGE1 + β_cam*CAM1 + OS1*(
+    β_os_young*(AGE==1) + β_os_middle*(AGE==2) + β_os_old*(AGE==3))
+V1 = β_cost*COST2 + β_size*SIZE2 + β_storage*STORAGE2 + β_cam*CAM2 + OS2*(
+    β_os_young*(AGE==1) + β_os_middle*(AGE==2) + β_os_old*(AGE==3))
+V3 = β_cost*COST3 + β_size*SIZE3 + β_storage*STORAGE3 + β_cam*CAM3 + OS3*(
+    β_os_young*(AGE==1) + β_os_middle*(AGE==2) + β_os_old*(AGE==3))
+
+#create systematic utility dict
+
+V = {1: V1, 2: V2, 3: V3}
+av = {1:1, 2:1, 3:1}
+
+prob = models.logit(V, av, CHOICE)
+LL = log(prob)
+
+biogeme = bio.BIOGEME(biodata,LL)
+
+biogeme.modelName = "Model with OS choice"
+biogeme.generatePickle = False
+biogeme.generate_html = False
+biogeme.saveIterations = False
 
 
+#calculate nul log likelihood for rho square
 
-
-
-
+biogeme.calculateNullLoglikelihood(av)
+# This line starts the estimation and returns the results object.
+results_MNL = biogeme.estimate()
+# Print the estimation statistics
+print(results_MNL.short_summary())
+print(results_MNL.getEstimatedParameters())
+    
 
 
 
