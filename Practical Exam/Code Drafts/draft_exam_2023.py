@@ -36,6 +36,38 @@ data.head()
 age = data['AGE'].value_counts()
 print(age)
 
+biodata = db.Database("Smartphone Choice", data)
+
+#atrributes of alternative 1
+COST1 = Variable('COST1')
+SIZE1 = Variable('SIZE1')
+STORAGE1 = Variable('STORAGE1')
+CAM1 = Variable('CAM1')
+OS1 = Variable('OS1')
+
+#atrributes of alternative 2
+COST2 = Variable('COST2')
+SIZE2 = Variable('SIZE2')
+STORAGE2 = Variable('STORAGE2')
+CAM2 = Variable('CAM2')
+OS2 = Variable('OS2')
+
+#atrributes of alternative 3
+COST3 = Variable('COST3')
+SIZE3 = Variable('SIZE3')
+STORAGE3 = Variable('STORAGE3')
+CAM3 = Variable('CAM3')
+OS3 = Variable('OS3')
+
+#choice variable
+CHOICE = Variable('CHOICE')
+
+
+
+
+
+
+
 
 
 
