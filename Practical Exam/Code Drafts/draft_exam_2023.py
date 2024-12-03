@@ -62,6 +62,36 @@ OS3 = Variable('OS3')
 #choice variable
 CHOICE = Variable('CHOICE')
 
+#Socio Economic variable
+AGE = Variable('AGE')
+
+#give model name
+model_name = 'Linear-additive RUM-MNL'
+
+#model paramters
+β_cost = Beta('β_cost', 0, None, None, 0)
+β_size = Beta('β_size', 0, None, None, 0)
+β_storage = Beta('β_storage', 0, None, None, 0)
+β_cam = Beta('β_cam', 0, None, None, 0)
+β_os = Beta('β_os', 0, None, None, 0)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
